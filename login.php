@@ -1,3 +1,37 @@
+<?php
+require "db.php";
+require "domain/user.php";
+
+
+// pokretanje sesije
+session_start();
+
+if(isset($_GET['username']) && isset($_GET['password'])){
+
+    $username = $_GET['username'];
+    $password = $_GET['password'];
+    echo "1";
+    $result = User::userLogIn($username, $password, $conn);
+
+    if($result->num_rows==1) {
+        echo "Login successful";
+        $_SESSION['user_id'] = $result->fetch_assoc()['id'];
+        
+        
+        header('Location: home.php');
+        exit();
+    } else {
+    
+        echo '<script type="text/javascript">alert("Try again :("); 
+                                              window.location.href = "http://localhost/domaci1php/login.php";</script>';
+        exit();
+    }
+}
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,6 +45,7 @@
 <body>
 
 <div class="form">
+<form method="GET" action="#"> 
       <div class="title">Welcome</div>
       <div class="subtitle">Let's write your notes</div>
       <div class="input-container ic1">
@@ -23,7 +58,8 @@
         <div class="cut"></div>
         <label for="password" class="placeholder">Password</label>
       </div>
-      <button type="text" class="submit">Log In</button>
+      <button type="submit" name="submit" class="submit">Log In</button>
+</form>
     </div>
     
 </body>
