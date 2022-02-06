@@ -9,10 +9,10 @@ $('#addNoteForm').submit(function () {
     });
     request.done(function (response, textStatus, jqXHR) {
         if (textStatus === 'success') {
-            alert('Note is added :)'); 
+            alert('Note is successfully added'); 
             location.reload(true);
         } else {
-            alert('Note is not added :(');
+            alert('Note is not successfully added');
             location.reload(true);
         }
     });
@@ -56,10 +56,10 @@ $('#editNoteForm').submit(function () {
     });
     request.done(function (response, textStatus, jqXHR) {
         if (textStatus === 'success') {
-            alert('Note is edited!'); 
+            alert('Note is  successfully edited!'); 
             location.reload(true);
         } else {
-            alert('Note is not edited!');
+            alert('Note is not successfully edited!');
             location.reload(true);
         }
     });
@@ -79,9 +79,9 @@ $('#btnDeleteNote').click(function () {
     request.done(function (data, textStatus, qXHR) {
         if(textStatus === 'success'){
             checked.closest('tr').remove();
-            alert("Note is deleted");
+            alert("Note is successfully  deleted");
         } else {
-            alert("Note is not deleted");
+            alert("Note is not successfully  deleted");
         }
     });
     request.fail(function (jqXHR, textStatus, errorThrown) {
